@@ -7,7 +7,8 @@ const commonSettings: ThemeOptions = {
 const lightTheme = createTheme({
   ...commonSettings,
   typography: {
-    fontFamily: 'Roboto, sans-serif',
+    fontFamily:
+      '-apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif',
     allVariants: {
       color: 'text.primary'
     },
@@ -30,14 +31,6 @@ const lightTheme = createTheme({
     subtitle2: {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '14px'
-    },
-    h1: {
-      fontFamily: 'Roboto, sans-serif',
-      fontSize: '30px'
-    },
-    h2: {
-      fontFamily: 'Roboto, sans-serif',
-      fontSize: '24px'
     }
   },
 

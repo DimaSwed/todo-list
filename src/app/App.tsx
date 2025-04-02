@@ -1,11 +1,13 @@
-import { MainPage } from '@/pages/main-page/ui/MainPage'
+import { TodoListPage } from '@/pages/todo'
+import { Container, Typography } from '@mui/material'
 
-function App() {
+export function App() {
   return (
-    <main>
-      <MainPage />
-    </main>
+    <Container maxWidth="sm" sx={{ mt: 4 }}>
+      <Typography variant="h2" align="center" gutterBottom>
+        Todo List
+      </Typography>
+      <TodoListPage />
+    </Container>
   )
 }
-
-export default App

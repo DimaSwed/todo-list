@@ -7,7 +7,8 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "start": "concurrently \"vite\" \"json-server --watch db.json --port 3001\""
   },
   "dependencies": {
     "@emotion/cache": "^11.14.0",
@@ -16,10 +17,13 @@
     "@emotion/styled": "^11.14.0",
     "@mui/icons-material": "^7.0.1",
     "@mui/material": "^7.0.1",
-    "@reduxjs/toolkit": "^2.6.1",
+    "@tanstack/react-query": "^5.71.3",
+    "@tanstack/react-query-devtools": "^5.71.3",
+    "axios": "^1.8.4",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-redux": "^9.2.0"
+    "react-error-boundary": "^5.0.0",
+    "react-router-dom": "^7.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
@@ -29,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "^8.28.0",
     "@typescript-eslint/parser": "^8.28.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "concurrently": "^9.1.2",
     "eslint": "^9.23.0",
     "eslint-config-prettier": "^10.1.1",
     "eslint-plugin-import": "^2.31.0",
@@ -37,6 +42,7 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.19",
     "globals": "^15.15.0",
+    "json-server": "^1.0.0-beta.3",
     "prettier": "^3.5.3",
     "sass": "^1.86.0",
     "typescript": "~5.7.2",
