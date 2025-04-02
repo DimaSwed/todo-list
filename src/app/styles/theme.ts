@@ -1,7 +1,7 @@
 import { createTheme, ThemeOptions } from '@mui/material/styles'
 
 const commonSettings: ThemeOptions = {
-  breakpoints: { values: { xs: 320, sm: 480, md: 992, lg: 1280, xl: 1440 } }
+  breakpoints: { values: { xs: 320, sm: 480, md: 768, lg: 1280, xl: 1440 } }
 }
 
 const lightTheme = createTheme({
@@ -18,7 +18,7 @@ const lightTheme = createTheme({
     },
     body2: {
       fontFamily: 'Roboto, sans-serif',
-      fontSize: '16px'
+      fontSize: '14px'
     },
     button: {
       fontFamily: 'Roboto, sans-serif',
@@ -27,10 +27,6 @@ const lightTheme = createTheme({
     subtitle1: {
       fontFamily: 'Roboto, sans-serif',
       fontSize: '20px'
-    },
-    subtitle2: {
-      fontFamily: 'Roboto, sans-serif',
-      fontSize: '14px'
     }
   },
 

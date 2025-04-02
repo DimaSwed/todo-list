@@ -1,13 +1,15 @@
-import { TodoListPage } from '@/pages/todo'
-import { Container, Typography } from '@mui/material'
+import { TodoWidget } from '@/widgets/todo-list'
+import { Box, Container, Typography } from '@mui/material'
 
 export function App() {
   return (
-    <Container maxWidth="sm" sx={{ mt: 4 }}>
-      <Typography variant="h2" align="center" gutterBottom>
-        Todo List
-      </Typography>
-      <TodoListPage />
-    </Container>
+    <Box maxWidth="100%" height="100vh" p={4} sx={{ backgroundColor: 'background.paper' }}>
+      <Container maxWidth="md">
+        <Typography variant="h2" align="center" gutterBottom>
+          Todo List
+        </Typography>
+        <TodoWidget />
+      </Container>
+    </Box>
   )
 }
