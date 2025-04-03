@@ -1,22 +1,18 @@
 import { useState } from 'react'
 import { Stack } from '@mui/material'
 import { ITodo, TodoFilter } from '@/entities/todo/types'
-import { useQuery } from '@tanstack/react-query'
-import { todoApi } from './api/todoApi'
 import { TodoInput } from '@/widgets/todo-list/ui/TodoInput/TodoInput'
 import { TodoList } from '@/widgets/todo-list/ui/TodoList/TodoList'
 import { TodoTabs } from '@/widgets/todo-list/ui/TodoTabs/TodoTabs'
+import { useTodos } from '@/widgets/todo-list/hooks/useTodos'
 
 export const TodoWidget = () => {
   const [filter, setFilter] = useState<TodoFilter>('all')
 
-  const { data: response } = useQuery({
-    queryKey: ['todos'],
-    queryFn: todoApi.getTodos
-  })
+  const { data: response } = useTodos()
 
   const todos: ITodo[] = response || []
-  console.log(todos)
+  // console.log(todos)
 
   const filteredTodos = todos.filter((todo: ITodo) => {
     if (filter === 'active') return !todo.completed

@@ -1,20 +1,11 @@
 import { useState } from 'react'
 import { Box, TextField } from '@mui/material'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { todoApi } from '@/widgets/todo-list/api/todoApi'
+import { useAddTodo } from '@/widgets/todo-list/hooks/useTodos'
 
 export const TodoInput = () => {
   const [text, setText] = useState('')
 
-  const queryClient = useQueryClient()
-
-  const { mutate: addTodo } = useMutation({
-    mutationFn: todoApi.addTodo,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] })
-      setText('')
-    }
-  })
+  const { mutate: addTodo } = useAddTodo()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -27,7 +18,7 @@ export const TodoInput = () => {
         minute: '2-digit',
         second: '2-digit'
       })
-      addTodo({ id: crypto.randomUUID(), completed: false, createdAt, text })
+      addTodo({ id: crypto.randomUUID(), completed: false, createdAt, text }), setText('')
     }
   }
 

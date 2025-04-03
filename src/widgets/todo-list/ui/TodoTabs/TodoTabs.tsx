@@ -1,7 +1,6 @@
 import { TodoFilter } from '@/entities/todo/types'
 import { Box, Tab, Tabs, Typography } from '@mui/material'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { todoApi } from '@/widgets/todo-list/api/todoApi'
+import { useClearCompleted } from '@/widgets/todo-list/hooks/useTodos'
 
 interface ITodoTabsProps {
   filter: TodoFilter
@@ -10,14 +9,7 @@ interface ITodoTabsProps {
 }
 
 export const TodoTabs = ({ filter, setFilter, activeCount }: ITodoTabsProps) => {
-  const queryClient = useQueryClient()
-
-  const { mutate: clearCompleted } = useMutation({
-    mutationFn: todoApi.clearCompleted,
-    onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['todos'] })
-    }
-  })
+  const { mutate: clearCompleted } = useClearCompleted()
 
   return (
     <Box
