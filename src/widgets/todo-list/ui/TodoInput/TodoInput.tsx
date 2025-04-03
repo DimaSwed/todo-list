@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, TextField, IconButton, InputAdornment } from '@mui/material'
+import { Box, TextField, IconButton, InputAdornment, Button } from '@mui/material'
 import { Clear as ClearIcon } from '@mui/icons-material'
 import { useAddTodo } from '@/widgets/todo-list/hooks/useTodos'
 
@@ -24,7 +24,7 @@ export const TodoInput = () => {
   }
 
   return (
-    <Box component="form" onSubmit={handleSubmit} sx={{ mb: 2 }}>
+    <Box component="form" onSubmit={handleSubmit} sx={{ mb: 2, display: 'flex', gap: 2 }}>
       <TextField
         fullWidth
         variant="outlined"
@@ -41,6 +41,15 @@ export const TodoInput = () => {
           )
         }}
       />
+      <Button
+        type="submit"
+        variant="contained"
+        color="primary"
+        size="large"
+        sx={{ flexShrink: 0, flexGrow: 0, boxShadow: 0, border: 'none' }}
+      >
+        Add
+      </Button>
     </Box>
   )
 }
