@@ -1,6 +1,24 @@
+import { TodoFilter } from '@/entities/todo/types'
 import { Box, Tab, Tabs, Typography } from '@mui/material'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { todoApi } from '@/widgets/todo-list/api/todoApi'
 
-export const TodoTabs = () => {
+interface ITodoTabsProps {
+  filter: TodoFilter
+  setFilter: (filter: TodoFilter) => void
+  activeCount: number
+}
+
+export const TodoTabs = ({ filter, setFilter, activeCount }: ITodoTabsProps) => {
+  const queryClient = useQueryClient()
+
+  const { mutate: clearCompleted } = useMutation({
+    mutationFn: todoApi.clearCompleted,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    }
+  })
+
   return (
     <Box
       sx={{
@@ -13,12 +31,13 @@ export const TodoTabs = () => {
       }}
     >
       <Typography variant="body2" color="divider">
-        1 items left
+        {activeCount} items left
       </Typography>
 
       <Box>
         <Tabs
-          value="all"
+          value={filter}
+          onChange={(_, newValue) => setFilter(newValue)}
           centered
           slotProps={{
             indicator: {
@@ -38,6 +57,7 @@ export const TodoTabs = () => {
       <Typography
         variant="body2"
         color="divider"
+        onClick={() => clearCompleted()}
         sx={{
           cursor: 'pointer',
           fontWeight: 600,

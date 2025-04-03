@@ -1,7 +1,22 @@
 {
   "todos": [
-    { "id": 1, "text": "Тестовое задание", "completed": false },
-    { "id": 2, "text": "Прекрасный код", "completed": true },
-    { "id": 3, "text": "Покрытие тестами", "completed": false }
+    {
+      "completed": false,
+      "createdAt": "3 апреля 2025 г. в 09:00:56",
+      "text": "Тестовое задание",
+      "id": "1"
+    },
+    {
+      "completed": false,
+      "createdAt": "3 апреля 2025 г. в 09:00:00",
+      "text": "Прекрасный код",
+      "id": "2"
+    },
+    {
+      "completed": false,
+      "createdAt": "3 апреля 2025 г. в 09:01:00",
+      "text": "Покрытие тестами",
+      "id": "3"
+    }
   ]
 }

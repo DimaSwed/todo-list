@@ -1,27 +1,12 @@
 import { List, Typography } from '@mui/material'
 import { TodoItem } from '@/widgets/todo-list/ui/TodoItem/TodoItem'
+import { ITodo } from '@/entities/todo/types'
 
-// Mock
+interface ITodoListProps {
+  todos: ITodo[]
+}
 
-const todos = [
-  {
-    id: 1,
-    text: 'Тестовое задание',
-    completed: false
-  },
-  {
-    id: 2,
-    text: 'Прекрасный код',
-    completed: true
-  },
-  {
-    id: 3,
-    text: 'Покрытие тестами',
-    completed: false
-  }
-]
-
-export const TodoList = () => {
+export const TodoList = ({ todos }: ITodoListProps) => {
   return (
     <List>
       {todos.length === 0 ? (
@@ -29,7 +14,7 @@ export const TodoList = () => {
           No tasks found
         </Typography>
       ) : (
-        todos.map((todo) => <TodoItem key={todo.id} />)
+        todos.map((todo) => <TodoItem key={todo.id} todo={todo} />)
       )}
     </List>
   )

@@ -1,10 +1,32 @@
 import { Checkbox, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import { ITodo } from '@/entities/todo/types'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { todoApi } from '@/widgets/todo-list/api/todoApi'
 
-export const TodoItem = () => {
+interface ITodoItemProps {
+  todo: ITodo
+}
+
+export const TodoItem = ({ todo }: ITodoItemProps) => {
+  const queryClient = useQueryClient()
+
+  const { mutate: toggleTodo } = useMutation({
+    mutationFn: () =>
+      todoApi.updateTodo(todo.id, {
+        completed: !todo.completed,
+        createdAt: todo.createdAt,
+        text: todo.text
+      }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['todos'] })
+    }
+  })
+
   return (
     <ListItem disablePadding divider>
       <ListItemButton
         dense
+        onClick={() => toggleTodo()}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -20,7 +42,8 @@ export const TodoItem = () => {
           <Checkbox
             edge="start"
             tabIndex={-1}
-            // disableRipple
+            checked={todo.completed}
+            disableRipple
             sx={{
               color: 'secondary.main',
               '&.Mui-checked': {
@@ -30,11 +53,12 @@ export const TodoItem = () => {
           />
         </ListItemIcon>
         <ListItemText
-          primary="Todo item text"
+          primary={todo.text}
           primaryTypographyProps={{
             sx: {
               fontSize: '18px',
-              color: 'divider'
+              color: 'divider',
+              textDecoration: todo.completed ? 'line-through' : 'none'
             }
           }}
         />

@@ -1,10 +1,10 @@
 import axios from 'axios'
 
-export const http = axios.create({
+export const apiClient = axios.create({
   baseURL: 'http://localhost:3001'
 })
 
-http.interceptors.response.use(
-  (response) => response.data,
+apiClient.interceptors.response.use(
+  (response) => response,
   (error) => Promise.reject(error)
 )
