@@ -6,8 +6,14 @@ export const todoApi = {
     const response = await apiClient.get<ITodo[]>('/todos')
     return response.data
   },
-  addTodo: (todo: ITodo) => apiClient.post<ITodo>('/todos', todo),
-  updateTodo: (id: string, todo: Partial<ITodo>) => apiClient.put<ITodo>(`/todos/${id}`, todo),
+  addTodo: async (todo: ITodo) => {
+    const response = await apiClient.post<ITodo>('/todos', todo)
+    return response.data
+  },
+  updateTodo: async (id: string, todo: Partial<ITodo>) => {
+    const response = await apiClient.patch<ITodo>(`/todos/${id}`, todo)
+    return response.data
+  },
   deleteTodo: async (id: string) => {
     const response = await apiClient.delete(`/todos/${id}`)
     return response.data || {}

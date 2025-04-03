@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import { Stack } from '@mui/material'
+import { useState, Suspense } from 'react'
+import { CircularProgress, Stack } from '@mui/material'
 import { ITodo, TodoFilter } from '@/entities/todo/types'
 import { TodoInput } from '@/widgets/todo-list/ui/TodoInput/TodoInput'
 import { TodoList } from '@/widgets/todo-list/ui/TodoList/TodoList'
@@ -35,7 +35,11 @@ export const TodoWidget = () => {
       }}
     >
       <TodoInput />
-      <TodoList todos={filteredTodos} />
+
+      <Suspense fallback={<CircularProgress sx={{ margin: '0 auto' }} />}>
+        <TodoList todos={filteredTodos} />
+      </Suspense>
+
       <TodoTabs filter={filter} setFilter={setFilter} activeCount={activeCount} />
     </Stack>
   )

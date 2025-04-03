@@ -46,7 +46,8 @@ export const TodoInput = () => {
         variant="contained"
         color="primary"
         size="large"
-        sx={{ flexShrink: 0, flexGrow: 0, boxShadow: 0, border: 'none' }}
+        sx={{ boxShadow: 0, border: 'none' }}
+        disabled={!text.trim()}
       >
         Add
       </Button>
