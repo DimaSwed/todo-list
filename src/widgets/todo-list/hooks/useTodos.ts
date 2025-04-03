@@ -1,11 +1,21 @@
 import { useMutation, useQueryClient, useSuspenseQuery } from '@tanstack/react-query'
 import { todoApi } from '@/widgets/todo-list/api/todoApi'
-import { ITodo } from '@/entities/todo/types'
+import { ITodo, PaginatedResponse } from '@/entities/todo/types'
 
-export function useTodos() {
-  return useSuspenseQuery<ITodo[]>({
-    queryKey: ['todos'],
-    queryFn: todoApi.getTodos,
+export function useTodos({
+  page = 1,
+  perPage = 5,
+  sort = { createdAt: 'asc' },
+  filters = {}
+}: {
+  page?: number
+  perPage?: number
+  sort?: { createdAt: 'asc' | 'desc' }
+  filters?: { completed?: boolean; title?: string }
+} = {}) {
+  return useSuspenseQuery<PaginatedResponse<ITodo> & { page: number }>({
+    queryKey: ['todos', { page, perPage, sort, filters }],
+    queryFn: () => todoApi.getTodos({ page, perPage, sort, filters }),
     staleTime: 1000 * 60,
     retry: 1
   })

@@ -6,3 +6,14 @@ export interface ITodo {
 }
 
 export type TodoFilter = 'all' | 'active' | 'completed'
+
+export type PaginatedResponse<T> = {
+  data: T[]
+  first: number
+  items: number
+  last: number
+  next: number | null
+  page: number
+  pages: number
+  prev: number | null
+}

@@ -7,7 +7,7 @@
       "id": "1"
     },
     {
-      "completed": false,
+      "completed": true,
       "createdAt": "3 апреля 2025 г. в 09:00:58",
       "text": "Прекрасный код",
       "id": "2"
@@ -17,18 +17,6 @@
       "createdAt": "3 апреля 2025 г. в 09:01:00",
       "text": "Покрытие тестами",
       "id": "3"
-    },
-    {
-      "id": "7515e66f-caef-4331-98d7-84ba929e1d70",
-      "completed": true,
-      "createdAt": "3 апреля 2025 г. в 13:22:40",
-      "text": "1"
-    },
-    {
-      "id": "ae65c165-376f-4e13-aa7c-77b55c2d4c87",
-      "completed": true,
-      "createdAt": "3 апреля 2025 г. в 13:22:42",
-      "text": "2"
     }
   ]
 }
