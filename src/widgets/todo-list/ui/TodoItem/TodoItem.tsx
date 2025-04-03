@@ -1,6 +1,14 @@
-import { Checkbox, ListItem, ListItemButton, ListItemIcon, ListItemText } from '@mui/material'
+import {
+  Checkbox,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  IconButton
+} from '@mui/material'
 import { ITodo } from '@/entities/todo/types'
-import { useUpdateTodo } from '@/widgets/todo-list/hooks/useTodos'
+import { useDeleteTodo, useUpdateTodo } from '@/widgets/todo-list/hooks/useTodos'
+import { Delete as DeleteIcon } from '@mui/icons-material'
 
 interface ITodoItemProps {
   todo: ITodo
@@ -8,6 +16,7 @@ interface ITodoItemProps {
 
 export const TodoItem = ({ todo }: ITodoItemProps) => {
   const { mutate: toggleTodo } = useUpdateTodo()
+  const { mutate: deleteTodo } = useDeleteTodo()
 
   const handleToggle = () => {
     toggleTodo({
@@ -18,6 +27,11 @@ export const TodoItem = ({ todo }: ITodoItemProps) => {
         text: todo.text
       }
     })
+  }
+
+  const handleDelete = (e: React.MouseEvent) => {
+    e.stopPropagation()
+    deleteTodo(todo.id)
   }
 
   return (
@@ -60,6 +74,9 @@ export const TodoItem = ({ todo }: ITodoItemProps) => {
             }
           }}
         />
+        <IconButton edge="end" onClick={handleDelete}>
+          <DeleteIcon color="primary" />
+        </IconButton>
       </ListItemButton>
     </ListItem>
   )

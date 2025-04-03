@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Box, TextField } from '@mui/material'
+import { Box, TextField, IconButton, InputAdornment } from '@mui/material'
+import { Clear as ClearIcon } from '@mui/icons-material'
 import { useAddTodo } from '@/widgets/todo-list/hooks/useTodos'
 
 export const TodoInput = () => {
@@ -30,6 +31,15 @@ export const TodoInput = () => {
         placeholder="What needs to be done?"
         value={text}
         onChange={(e) => setText(e.target.value)}
+        InputProps={{
+          endAdornment: text && (
+            <InputAdornment position="end">
+              <IconButton onClick={() => setText('')} edge="end">
+                <ClearIcon />
+              </IconButton>
+            </InputAdornment>
+          )
+        }}
       />
     </Box>
   )
