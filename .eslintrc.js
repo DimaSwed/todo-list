@@ -1,8 +1,7 @@
-// .eslintrc.js
 module.exports = {
   env: {
-    jest: true, // добавьте поддержку Jest
-    vitest: true // добавьте поддержку Vitest
+    jest: true,
+    vitest: true
   },
   extends: [
     'eslint:recommended',
